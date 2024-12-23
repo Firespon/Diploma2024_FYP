@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="css/scrollbar.css">
+  <title>About</title>
+
+
+</head>
+<style>
+* {
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+.container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 100px 100px;
+  margin: 0px 100px 150px;
+}
+
+.container .service-card{ 
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 350px;
+  max-width:100%;
+  height: 300px;
+  background: #FFF;
+  border-radius: 20px;
+  transition: 0.5s;
+  box-shadow: 0 35px 80px rgba(0, 0, 0, 0.15);
+}
+
+.container .service-card:hover {
+  height: 400px;
+}
+
+.container .service-card .image {
+  position: absolute;
+  top: 20px;
+  width: 300px;
+  height: 220px;
+  background: #333;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: 0.5s;
+}
+
+.container .service-card:hover .image{
+  top: -100px;
+  scale: 0.75;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.2);
+}
+
+.container .service-card .image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.container .service-card .service-content{
+  position: absolute;
+  top: 252px;
+  width: 100%;
+  height: 35px;
+  padding: 0 30px;
+  text-align: center;
+  overflow: hidden;
+  transition: 0.5s;
+}
+
+.container .service-card:hover .service-content{
+  top: 130px;
+  height: 250px;
+}
+
+.container .service-card .service-content h2{
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #333333;
+}
+
+.container .service-card .service-content p{
+  color: #333;
+}
+
+.container .service-card .service-content a{
+  position: relative;
+  top: 15px;
+  display: inline-block;
+  padding: 12px 25px;
+  text-decoration: none;
+  background: #181818;
+  color: #fff;
+  font-weight: 500;
+}
+
+.container .service-card .service-content a:hover{
+  opacity: 0.8;
+}
+
+
+.title {
+  color: grey;
+}
+
+
+.page-title{
+  text-align: center;
+  padding-bottom: 40px;
+}
+.tag {
+    position: fixed;
+    bottom: 10px;
+    right: -10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 37px;
+    height: 90px;
+    border-radius: 10px;
+    outline: 1.0px solid black;
+    align-content: center;
+  }
+
+  .icon img{
+    margin-bottom: 5px;
+    margin-top: 5px;
+    width: 35px;
+    height: 35px;
+  }
+  
+</style>
+<body>
+  <div class="page-title">
+    <br>
+    <h1><span style="color:red; font-weight: bold;">OUR SERVICES</span><h1>
+    <h1>Our Best Services For You<h1>
+  </div>
+
+  <br><br>
+
+
+    <div class="container">
+      <div class="service-card">
+        <div class="image">
+          <img src="pictures/aboutpics/wheel-alignment.jpg."></div>
+        <div class="service-content">
+          <h2>Wheel Alignment</h2>
+          <p>Ensure optimal tire contact with road, extending tire life and improving fuel efficiency through precise wheel alignment service.</p>
+          <a href="Cust_Appointment.php">Book Now</a>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="image">
+          <img src="pictures/aboutpics/engine-remap.png.">
+        </div>
+        <div class="service-content">
+          <h2>Engine Remap</h2>
+          <p>Enhance your car's performance with our engine remap service, optimizing power, torque, and fuel efficiency for an exhilarating drive.</p>
+          <a href="Cust_Appointment.php">Book Now</a>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="image">
+          <img src="pictures/aboutpics/Engineoverhaul.jpeg">
+        </div>
+        <div class="service-content">
+          <h2>Engine Overhaul</h2>
+          <p>Revitalize your car's performance with our engine overhaul service, restoring power, efficiency, and reliability for enhanced driving experience.</p>
+          <a href="Cust_Appointment.php">Book Now</a>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="image">
+          <img src="pictures/aboutpics/VehicleComputerDiagnostic.jpg">
+        </div>
+        <div class="service-content">
+          <h2>Vehicle Computer Diagnostic</h2>
+          <p>Our efficient vehicle computer diagnostic service pinpoints car issues swiftly, ensuring precise repair solutions for optimal performance and safety.</p>
+          <a href="Cust_Appointment.php">Book Now</a>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="image">
+          <img src="pictures/aboutpics/turbocharged.jpg">
+        </div>
+        <div class="service-content">
+          <h2>Turbocharge</h2>
+          <p>Boost your car's performance with our Turbocharge Service. Experience enhanced power, efficiency, and reliability for an exhilarating drive.</p>
+          <a href="Cust_Appointment.php">Book Now</a>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="image">
+          <img src="pictures/aboutpics/airconditioner.jpg">
+        </div>
+        <div class="service-content">
+          <h2>Aircond Service</h2>
+          <p>Keep your car cool with our air conditioning service. Expert maintenance ensures comfort and efficiency for your driving experience.</p>
+          <a href="Cust_Appointment.php">Book Now</a>
+        </div>
+      </div>
+    </div>
+
+  
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="css/scrollbar.css">
+  <title>Document</title>
+</head>
+<style>
+
+  * {
+    font-family: "Poppins", sans-serif;
+  }
+
+  .service-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .service-image img {
+    max-width: 600px;
+    max-height: 500px;
+    margin-left: 70px;
+    border-radius: 30px;
+  }
+
+  .service-description {
+    text-align: justify;
+    font-size: 25px;
+    font-weight: normal;
+    padding-left: 80px;
+    padding-right: 80px;
+    margin-bottom: 40px;
+  }
+
+  .service-button button {
+    margin-left: 490px;
+    padding: 10px 10px;
+    font-size: 24px;
+    font-weight: bold;
+    background-color: maroon;
+    color: white;
+    cursor: pointer;
+    border: 2px solid white; /* Width, style, and color of the border */
+    border-radius: 5px;
+    transition: background-color 0.15s ease-in;
+  }
+
+  .service-button button:hover {
+  background-color: white;
+  color: maroon;
+  border: 2px solid maroon; /* Width, style, and color of the border */
+  border-radius: 5px;
+  }
+
+  .service-button button:active {
+  background-color: rgb(128, 0, 0, 0.7);
+  color: white;
+  border: 2px solid maroon; /* Width, style, and color of the border */
+  border-radius: 5px;
+  }
+
+  .grey-container {/* Ensure it takes up the full width */
+    margin: 0; /* Remove any default margins */
+    padding: 0; /* Remove any default padding */
+    background-color: rgb(113, 113, 113, 0.5);
+    overflow: hidden;
+    position: relative;
+    background-image: url('pictures/homepics/home_choose.jpg'); /* Add your image URL here */
+    background-size: cover; /* Ensures the image covers the entire container */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-position: center;
+  }
+
+  .white-container {/* Ensure it takes up the full width */
+    margin: 0; /* Remove any default margins */
+    padding: 0; /* Remove any default padding */
+    background-color: rgb(255, 255, 255, 0.5);
+    overflow: hidden;
+    width: 1149px;
+    height: 432px;
+    display: flex;
+    align-self: center;
+    margin-left: 200px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-evenly;
+    outline: 1px solid black;
+  }
+
+  .section {
+    width: calc(33.33% - 2px); /* Adjust width of sections as needed */
+    height: 100%;
+    background-color: #ffffff; /* Adjust background color of sections */
+    display: flex;
+    opacity: 0.8;
+    flex-direction: column;
+    justify-content: space-between; 
+    position: relative;
+  }
+
+  .section h3 {
+    margin-top: 70px; 
+    text-align: center;
+    font-size: 35px; 
+    color: black; 
+  }
+
+  .section p {
+    margin-left:50px;
+    margin-bottom: 200px; 
+    margin-right: 50px;
+    text-align: justify;
+    font-size: 17px;
+  }
+
+  .line {
+    width: 1px; /* Width of the line */
+    background-color: #000000; /* Color of the line */
+  }
+
+  .red {
+    color: red;   
+    text-shadow: 0px 2px 2px black;  
+  }
+
+  #home_title {
+    margin-left: 60px;
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: all 1s ease;
+    font-size: 60px;
+    font-weight: bolder;
+    text-align: center;  
+    }
+
+  #home_title.animate {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+
+
+</style>
+<body>
+
+  <div class="service-body">
+    <h1 id="home_title" text-align: center; font-size: 60px; font-weight: bolder;"> OUR SERVICES </h1>
+    <br>
+    <div class="service-container">
+      <div class="service-image">
+        <img src="pictures/homepics/home_about.jpg" alt="Description" class="image">
+      </div>
+      <div class="service-description">
+        <p>Welcome to <span style="color:red; font-weight: bold;">The Workshop</span>, your trusted destination for top-tier car services. From routine maintenance to specialized repairs, our expert technicians ensure your vehicle performs at its best. Experience unparalleled customer care and meticulous attention to detail. Drive with confidence—choose <span style="color:red; font-weight: bold;">The Workshop</span> today.</p>
+        <div class="service-button"><br>
+           <button onclick="location.href='User_About.php'" type="button">EXPLORE MORE</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br><br><br><br><br><br>
+
+  <div class = "grey-container"> 
+    <br>
+    <h1 style= "text-align: center;font-size: 60px; font-weight: bolder; color:white; bottom: 30px;"> WHY CHOOSE <span style="color:red"> US </span> ?</h1><br><br>
+    <div class = "white-container">
+      <div class="section">
+        <h3> 100% <br><span class="red">GUARENTEED</span> </h3>
+        <p>Lorem ipsum dolor sitamet, consectetur ipiscing ncididunt ut labore et dolore magna laboris equat. </p>
+      </div>
+      <div class="line"></div>
+      <div class="section">
+        <h3> RELIABLE <br><span class="red">EXCELLENCE</span> </h3>
+        <p>Lorem ipsum dolor sitamet, consectetur ipiscing ncididunt ut labore et dolore magna laboris equat. </p>
+      </div>
+      <div class="line"></div>
+      <div class="section">
+        <h3> EXPERT CARE,<br><span class="red">EVERY TIME</span> </h3>
+        <p>Lorem ipsum dolor sitamet, consectetur ipiscing ncididunt ut labore et dolore magna laboris equat. </p>
+      </div>
+    </div>
+    <h1><br></h1>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const homeTitle = document.getElementById('home_title');
+    const homeTitleOffset = homeTitle.offsetTop;
+    const homeTitleHeight = homeTitle.offsetHeight;
+
+    window.addEventListener('scroll', function() {
+        const pageOffset = window.pageYOffset + window.innerHeight;
+
+        if (pageOffset > homeTitleOffset + homeTitleHeight / 2 && window.pageYOffset < homeTitleOffset + homeTitleHeight) {
+            homeTitle.classList.add('animate');
+        } else {
+            homeTitle.classList.remove('animate');
+        }
+    });
+  });
+  </script>
+</body>
+</html>

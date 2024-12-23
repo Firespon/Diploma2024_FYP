@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>Dynamic Calendar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .wrapper {
+            width: 450px;
+            background: #fff;
+            border-radius: 10px;
+            margin-left: 300px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+            padding: 20px;
+        }
+
+        .wrapper header {
+            display: flex;
+            align-items: center;
+            padding: 25px 30px 10px;
+            justify-content: space-between;
+        }
+
+        header .icons {
+            display: flex;
+        }
+
+        header .icons span {
+            height: 38px;
+            width: 38px;
+            margin: 0 1px;
+            cursor: pointer;
+            color: #878787;
+            text-align: center;
+            line-height: 38px;
+            font-size: 1.9rem;
+            user-select: none;
+            border-radius: 50%;
+        }
+
+        .icons span:last-child {
+            margin-right: -10px;
+        }
+
+        header .icons span:hover {
+            background: #f2f2f2;
+        }
+
+        header .current-date {
+            font-size: 1.45rem;
+            font-weight: 500;
+        }
+
+        .calendar {
+            padding: 20px;
+        }
+
+        .calendar ul {
+            display: flex;
+            flex-wrap: wrap;
+            list-style: none;
+            text-align: center;
+        }
+
+        .calendar .days {
+            margin-bottom: 20px;
+        }
+
+        .calendar li {
+            color: #333;
+            width: calc(100% / 7);
+            font-size: 1.07rem;
+        }
+
+        .calendar .weeks li {
+            font-weight: 500;
+            cursor: default;
+        }
+
+        .calendar .days li {
+            z-index: 1;
+            cursor: pointer;
+            position: relative;
+            margin-top: 30px;
+        }
+
+        .days li.inactive {
+            color: #aaa;
+        }
+
+        .days li.active {
+            color: #fff;
+        }
+
+        .days li::before {
+            position: absolute;
+            content: "";
+            left: 50%;
+            top: 50%;
+            height: 40px;
+            width: 40px;
+            z-index: -1;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .days li.active::before {
+            background: #E12A2A;
+        }
+
+        .days li:not(.active):hover::before {
+            background: #f2f2f2;
+        }
+
+        .times {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .time-slot {
+            padding: 10px 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .time-slot:hover {
+            background: #f2f2f2;
+        }
+
+        .time-slot.active {
+            background: #E12A2A;
+            color: #fff;
+        }
+    </style>
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const daysContainer = document.querySelector('.days');
+            const currentDateElement = document.querySelector('.current-date');
+            const prevNextIcons = document.querySelectorAll('.icons span');
+            const timesContainer = document.querySelector('.times');
+
+            let date = new Date();
+            let currentYear = date.getFullYear();
+            let currentMonth = date.getMonth();
+            let selectedDate = null;
+            let selectedTime = null;
+
+            const months = [
+                "January", "February", "March", "April", "May", "June", "July",
+                "August", "September", "October", "November", "December"
+            ];
+
+            const renderCalendar = () => {
+                const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
+                const lastDateOfMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+                const lastDayOfMonth = new Date(currentYear, currentMonth, lastDateOfMonth).getDay();
+                const lastDateOfLastMonth = new Date(currentYear, currentMonth, 0).getDate();
+
+                let liTag = "";
+
+                for (let i = firstDayOfMonth; i > 0; i--) {
+                    liTag += `<li class="inactive">${lastDateOfLastMonth - i + 1}</li>`;
+                }
+
+                for (let i = 1; i <= lastDateOfMonth; i++) {
+                    let isToday = i === date.getDate() && currentMonth === new Date().getMonth() && currentYear === new Date().getFullYear() ? "active" : "";
+                    liTag += `<li class="${isToday}" data-date="${currentYear}-${currentMonth + 1}-${i}">${i}</li>`;
+                }
+
+                for (let i = lastDayOfMonth; i < 6; i++) {
+                    liTag += `<li class="inactive">${i - lastDayOfMonth + 1}</li>`;
+                }
+
+                currentDateElement.innerText = `${months[currentMonth]} ${currentYear}`;
+                daysContainer.innerHTML = liTag;
+            };
+
+            renderCalendar();
+
+            prevNextIcons.forEach(icon => {
+                icon.addEventListener("click", () => {
+                    currentMonth = icon.id === "prev" ? currentMonth - 1 : currentMonth + 1;
+                    if (currentMonth < 0 || currentMonth > 11) {
+                        date = new Date(currentYear, currentMonth, new Date().getDate());
+                        currentYear = date.getFullYear();
+                        currentMonth = date.getMonth();
+                    } else {
+                        date = new Date();
+                    }
+                    renderCalendar();
+                    addDateClickEvent();  // Re-attach click events after re-rendering the calendar
+                });
+            });
+
+            const addDateClickEvent = () => {
+                const days = document.querySelectorAll('.days li');
+                days.forEach(day => {
+                    day.addEventListener('click', getdate);
+                });
+            };
+
+            const getdate = (event) => {
+                const selectedDateString = event.target.getAttribute('data-date');
+                const newSelectedDate = new Date(selectedDateString);
+                const today = new Date();
+                
+                if (newSelectedDate > today) {
+                    // Remove the active class from the previously selected date
+                    const activeDay = document.querySelector('.days li.active');
+                    if (activeDay) {
+                        activeDay.classList.remove('active');
+                    }
+
+                    // Add the active class to the selected date
+                    event.target.classList.add('active');
+
+                    // Store the value of the selected date
+                    selectedDate = newSelectedDate;
+
+                    // Update the form input to the correct date in local timezone
+                    const localDate = new Date(newSelectedDate.getTime() - newSelectedDate.getTimezoneOffset() * 60000)
+                                        .toISOString().split('T')[0];
+                    document.getElementById('selectedDate').value = localDate;
+                } else {
+                    alert('Selected date is not in the future.');
+                }
+            };
+
+
+            const renderTimeSlots = () => {
+                const timeSlots = [
+                    '9:00 AM', '10:00 AM', '11:00 AM', '12:00 PM',
+                    '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM'
+                ];
+
+                timeSlots.forEach(time => {
+                    const timeSlot = document.createElement('div');
+                    timeSlot.className = 'time-slot';
+                    timeSlot.textContent = time;
+                    timeSlot.setAttribute('data-time', time);
+                    timeSlot.addEventListener('click', gettime);
+                    timesContainer.appendChild(timeSlot);
+                });
+            };
+
+            const gettime = (event) => {
+                // Remove the active class from the previously selected time slot
+                const activeTimeSlot = document.querySelector('.time-slot.active');
+                if (activeTimeSlot) {
+                    activeTimeSlot.classList.remove('active');
+                }
+
+                // Add the active class to the selected time slot
+                event.target.classList.add('active');
+
+                // Store the value of the selected time
+                selectedTime = event.target.getAttribute('data-time');
+
+                // Update the form input
+                document.getElementById('selectedTime').value = selectedTime;
+            };
+
+            renderTimeSlots();
+            addDateClickEvent();
+        });
+    </script>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <p class="current-date"></p>
+            <div class="icons">
+                <span id="prev" class="material-symbols-rounded">chevron_left</span>
+                <span id="next" class="material-symbols-rounded">chevron_right</span>
+            </div>
+        </header>
+        <div class="calendar">
+            <ul class="weeks">
+                <li>Sun</li>
+                <li>Mon</li>
+                <li>Tue</li>
+                <li>Wed</li>
+                <li>Thu</li>
+                <li>Fri</li>
+                <li>Sat</li>
+            </ul>
+            <ul class="days"></ul>
+        </div>
+        <div class="times"></div>
+    </div>
+</body>
+</html>

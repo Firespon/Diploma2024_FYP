@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    header .navbar i{
+      font-size: 1em;;
+    }
+  </style>
+</head>
+<body>
+  <header>
+
+    <a href="" class="logo">
+      <img src="pictures/company_logo.png" alt="company_logo" style="width: 110px; float:left;">
+    </a>
+    <p style="float: left; margin-right: 490px; font-size:40px;"><strong>TurboTech</strong></p>
+
+    <input type="checkbox" id="menu-bar">
+    <label for="menu-bar">
+      <i class="fa fa-bars"></i>
+    </label>
+
+    <nav class="navbar">
+      <ul>
+        <li><a href="Admin_PendingAppointment.php">Appointments +</a>
+          <ul>
+            <li><a href="Admin_PendingAppointment.php">Pending Appointment</a></li>
+            <li><a href="Admin_UpcomingAppointment.php">Upcoming Appointment</a></li>           
+            <li><a href="Admin_IncompletedAppointment.php">Incomplete Appointment</a></li>          
+            <li><a href="Admin_CompletedAppointment.php">Completed Appointment</a></li>
+          </ul>
+        </li>
+        <li><a href="Admin_ManageUser.php">User</a></li>
+        <li><a href="Admin_ViewAppointmentFeedback.php">Feedback +</a>
+          <ul>
+            <li><a href="Admin_ViewAppointmentFeedback.php">Service Feedback</a></li>
+            <li><a href="Admin_ViewFeedback.php">User ‎ ‎ ‎ Feedback</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="php/logout.php"><i class="fa fa-sign-out"></i></a>
+        </li>
+        
+      </ul>
+    </nav>
+  </header>
+  <script>
+    document.getElementById('menu-bar').addEventListener('change', function() {
+      var body = document.body;
+      if (this.checked) {
+        // Disable scrolling
+        body.style.overflow = 'hidden';
+      } else {
+        // Enable scrolling
+        body.style.overflow = 'auto';
+      }
+    });
+  </script>
+</body>
+</html>
